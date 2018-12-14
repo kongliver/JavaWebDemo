@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
 # Compiled class file
+*.class
+
 # Log file
 *.log
 
@@ -38,5 +40,3 @@ buildNumber.properties
 .gitignore
 .idea/
 grpcdemo.iml
-pom.xml
-src/
