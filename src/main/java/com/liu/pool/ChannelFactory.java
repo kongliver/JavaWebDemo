@@ -18,8 +18,8 @@ import io.grpc.ManagedChannelBuilder;
  */
 public class ChannelFactory extends BasePooledObjectFactory<ManagedChannel> {
 
-    private static String host;
-    private static int port;
+    private String host;
+    private int port;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -31,22 +31,21 @@ public class ChannelFactory extends BasePooledObjectFactory<ManagedChannel> {
     public PooledObject<ManagedChannel> wrap(ManagedChannel channel) {
         return new DefaultPooledObject<ManagedChannel>(channel);
     }
-    
-    public static String getHost() {
+
+    public String getHost() {
         return host;
     }
-    
-    public static void setHost(String host) {
-        ChannelFactory.host = host;
+
+    public void setHost(String host) {
+        this.host = host;
     }
-    
-    public static int getPort() {
+
+    public int getPort() {
         return port;
     }
-    
-    public static void setPort(int port) {
-        ChannelFactory.port = port;
+
+    public void setPort(int port) {
+        this.port = port;
     }
-    
     
 }

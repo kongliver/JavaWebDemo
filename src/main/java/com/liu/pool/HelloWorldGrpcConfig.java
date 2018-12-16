@@ -18,21 +18,25 @@ public class HelloWorldGrpcConfig {
 
     private static String host;
     private static int port;
+    private static ChannelPool channelPool;
     
     static {
         host = "127.0.0.1";
         port = 8880;
+        ChannelFactory channelFactory = new ChannelFactory();
+        channelFactory.setHost(HelloWorldGrpcConfig.host);
+        channelFactory.setPort(HelloWorldGrpcConfig.port);
+        HelloWorldPoolConfig poolConfig = new HelloWorldPoolConfig();
+        channelPool = new ChannelPool(poolConfig, channelFactory);
     }
     
     public static GreeterBlockingStub getStub() {
-        ChannelFactory.setHost(HelloWorldGrpcConfig.host);
-        ChannelFactory.setPort(HelloWorldGrpcConfig.port);
         ManagedChannel channel = null;
         try {
-            channel = ChannelPool.borrowChannel();
+            channel = channelPool.borrowChannel();
             return GreeterGrpc.newBlockingStub(channel);
         } finally {
-            ChannelPool.returnChannel(channel);
+            channelPool.returnChannel(channel);
         } 
     }
 }
