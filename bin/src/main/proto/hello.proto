@@ -1,0 +1,27 @@
+syntax = "proto3";  // 指定语法
+
+// 如果为ture，每次message和service都会被生成一个类
+// 如果为false，所有的message和service都将是java_outer_classname的内部类
+option java_multiple_files = true;
+// 生成代码后的命名空间
+option java_package = "com.liu.grpc.helloworld";
+// proto命名，不能与下面写的message名称相同
+option java_outer_classname = "HelloWorld";
+
+package helloworld;
+
+// 定义服务
+service Greeter{
+    // 服务中的方法，用于根据HelloRequest类型的参数获得一个HelloReply类型的返回值
+    rpc SayHello (HelloRequest) returns (HelloReply){}
+}
+
+// 定义HelloRequest消息类型，其中name为其序列为1的字段
+message HelloRequest{
+    string name = 1;
+}
+
+// 定义HelloReply消息类型，其中message为其序列为1的字段
+message HelloReply{
+    string message = 1;
+}
