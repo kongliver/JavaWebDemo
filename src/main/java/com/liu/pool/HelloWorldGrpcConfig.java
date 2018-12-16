@@ -23,9 +23,7 @@ public class HelloWorldGrpcConfig {
     static {
         host = "127.0.0.1";
         port = 8880;
-        ChannelFactory channelFactory = new ChannelFactory();
-        channelFactory.setHost(HelloWorldGrpcConfig.host);
-        channelFactory.setPort(HelloWorldGrpcConfig.port);
+        ChannelFactory channelFactory = new ChannelFactory(host, port);
         HelloWorldPoolConfig poolConfig = new HelloWorldPoolConfig();
         channelPool = new ChannelPool(poolConfig, channelFactory);
     }

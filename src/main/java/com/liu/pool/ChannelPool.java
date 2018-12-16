@@ -26,7 +26,7 @@ public class ChannelPool {
     public ChannelPool(GenericObjectPoolConfig<ManagedChannel> poolConfig, ChannelFactory channelFactory) {
         this.poolConfig = poolConfig;
         this.channelFactory = channelFactory;
-        channelPool = new GenericObjectPool<ManagedChannel>(new ChannelFactory(), poolConfig);
+        channelPool = new GenericObjectPool<ManagedChannel>(channelFactory, poolConfig);
     }
 
     public ManagedChannel borrowChannel() {

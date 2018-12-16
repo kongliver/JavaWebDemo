@@ -31,6 +31,11 @@ public class ChannelFactory extends BasePooledObjectFactory<ManagedChannel> {
     public PooledObject<ManagedChannel> wrap(ManagedChannel channel) {
         return new DefaultPooledObject<ManagedChannel>(channel);
     }
+    
+    public ChannelFactory(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
 
     public String getHost() {
         return host;
